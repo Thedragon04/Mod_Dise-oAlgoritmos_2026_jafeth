@@ -1,6 +1,6 @@
 
 // hola.c - Prueba del entorno de la UA2 
-   #include <stdio.h>          // biblioteca de entrada y salida: printf y scanf 
+#include <stdio.h>          // biblioteca de entrada y salida: printf y scanf 
 
    int main(void) { 
        int edad; 
@@ -12,4 +12,4 @@
       // Muestra el dato leído -> Edad registrada: 20 
       printf("Edad registrada: %d\n", edad); 
       return 0;               // termina sin errores 
-  };
+  }
