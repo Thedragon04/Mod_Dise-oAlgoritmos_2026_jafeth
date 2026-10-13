@@ -38,7 +38,7 @@ int main(void){
     }
 
 
-    if (capacidadPago && tieneDeudas != 1 && (antiguedad >= 0 || tieneFiador == 1))
+    if (capacidadPago && tieneDeudas != 1 && (antiguedad >= 1 || tieneFiador == 1))
     {
         aprobado = 1;
     }
