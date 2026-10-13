@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(void){
-    int nota;
+    double nota;
 
     printf("Nota (0 a 100): ");
     scanf("%d", &nota);
