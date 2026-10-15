@@ -50,7 +50,7 @@ int main(void){
     {
         if (notas[i] > promedio)
         {
-            printf(" %.1f",notas);
+            printf(" %.1f",notas[i]);
         }
         
     }
