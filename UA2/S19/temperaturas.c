@@ -15,6 +15,7 @@
 #define DIAS 7                        // cantidad de dias de la semana
 #define MINIMA -10                    // menor temperatura aceptada
 #define MAXIMA 45                     // mayor temperatura aceptada
+#include <stdlib.h>
 
 int main(void) {
     int temp;              // temperatura digitada para un dia
@@ -47,5 +48,6 @@ int main(void) {
     printf("\nPromedio: %.1f grados\n", promedio);
     printf("Maxima: %d grados\n", maxima);
     printf("Dias calurosos: %d\n", calurosos);
+    system ("pause");
     return 0;
 }
