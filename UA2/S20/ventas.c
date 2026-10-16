@@ -19,7 +19,7 @@ int main(void){
                                 {90, 80, 100, 80},
                                 {120, 90, 100, 100}};
     char mejor[10];//Nombre de la sucursal ganadora
-    int s=0, d=0, total=0, totalDia=0, mayor = 0;
+    int s, d, total, totalDia, mayor = 0;
 
     //Encabezado : D1 a D4
     printf("%-8s", "");
@@ -33,8 +33,7 @@ int main(void){
     {
         total = 0;  //Reinicia cada fila
         printf("%-8s", nombres[s]);// Nombre a la izquierda
-    
-        for (d = 0; d < DIAS; d++);
+        for (d = 0; d < DIAS; d++)
         {
             printf("%5d", ventas[s][d]);
             total += ventas[s][d];
