@@ -74,4 +74,6 @@ int main(void){
     printf("Descuento IESS (2.5%%): %11.2f\n",iess);
     printf("Impuesto renta (10%%):  %11.2f\n",renta);
     printf("Salario neto:           %10.2f\n",salario_neto);
+    system("pause");
+    return 0;
 }
