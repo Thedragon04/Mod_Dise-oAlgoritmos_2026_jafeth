@@ -30,7 +30,7 @@ int main(void) {
     int i = 0,cantidad_articulos=0, parar=0;
     char articulo[50],nombre[50],salir[5];
     float  total_articulos=0, descuento=0,impuesto=0,total_pagar=0,total_con_descuento = 0;
-
+    // se pide el nombre 
     printf("=== Compra en la tienda ===\n");
     printf("Nombre del cliente: ");
     fgets(nombre, sizeof(nombre),stdin);
@@ -40,12 +40,13 @@ int main(void) {
 
     while (i < MAXIMO){
     parar = 0;
-
+    // Se pide el nombre del producto
     printf("Producto %d\n", i+1);
     printf("Nombre: ");
     fgets(articulo, sizeof(articulo),stdin);
     articulo[strcspn(articulo, "\n")] = '\0';
     strcpy(articulos[i], articulo);
+    //Verica el precio para precio actual
     do
     {
         printf("Precio unitario: ");
@@ -54,9 +55,8 @@ int main(void) {
         {
             printf("Precio invalido solo de 1 para arriba\n");
         }
-
     } while (precio[i] < 1);
-        
+    //Verifica la cantidad para cantidad actual
     do
     {
         printf("Cantidad: ");
@@ -67,13 +67,17 @@ int main(void) {
         }
     } while (cantidad[i] < 1);
 
+    //Subtotal para cada subtotal actual
     subtotal[i]= precio[i]*cantidad[i];
+    //suma para total
     total_articulos += subtotal[i];
+    //print del subtotal actual
     printf("Subtotal: %.2f\n", subtotal[i]);
+    //suma de productos registrados
     cantidad_articulos++;
     i++;
 
-
+    //Limpiar despues de un scanf
     while  (getchar() != '\n');
     if (i >= MAXIMO)
     {
