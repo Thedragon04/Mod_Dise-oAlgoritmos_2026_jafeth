@@ -58,8 +58,7 @@ int main(void) {
         i++;
         cantidad_libros++;
         //ESTO ES AYUDA DE GEMINI POR QUE NO SABIA COMO LIMPIAR EL scanf PARA DESPUES HACER UN fgets
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
+        while  (getchar() != '\n');
         //Pedimos otro libro hasta el final
         printf("Titulo del libro (FIN para terminar): ");
         fgets(titulo_libro, sizeof(titulo_libro),stdin);
