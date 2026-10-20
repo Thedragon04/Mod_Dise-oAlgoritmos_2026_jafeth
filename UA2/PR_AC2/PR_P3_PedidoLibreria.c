@@ -97,4 +97,6 @@ int main(void) {
     printf("Envio:                %.2f\n", envio);
     printf("TOTAL A PAGAR:        %.2f\n", total_pagar);
 
+    system("pause");
+    return 0;
 }
