@@ -79,24 +79,24 @@ int main(void) {
 
     //Limpiar despues de un scanf
     while  (getchar() != '\n');
+    //Si llega al maximo se termina el ciclo
     if (i >= MAXIMO)
     {
         printf("Limite de articulos alcanzado (10)\n");
         break;
     }
-    
     do
     {
+        //Pregunto si quiere seguir
         printf("Desea agregar otro producto? (S/N): \n");
         fgets(salir, sizeof(salir),stdin);
         salir[strcspn(salir, "\n")] = '\0';
-
         if (strcmp(salir , "S") == 0 || strcmp(salir , "s") == 0){
-            parar = 1;
+            parar = 1; //parar se vuelve 1 pero no rompe el while principal
         }
         else if (strcmp(salir , "N") == 0 || strcmp(salir , "n") == 0)
         {
-            parar = 2;
+            parar = 2;//parar se vuelve 2 y rompe el while principal
         }
         else{
             printf("Solo acepta S o N (mayúscula o minúscula)\n");
@@ -104,10 +104,10 @@ int main(void) {
         
     } while (parar == 0);
 
-    if (parar == 2){break;}
+    if (parar == 2){break;}//Break para romper el ciclo principal si la respuesta es N
 
     }
-
+    //Tiene descuento si sobre pasa alguna de la cantidades si es menor a 100 no se aplica nada
     if (total_articulos > 1000)
     {descuento = total_articulos * 0.15;}
     else if (total_articulos < 1000 && total_articulos >= 500)
@@ -115,21 +115,22 @@ int main(void) {
     else if (total_articulos < 500 && total_articulos >= 100)
     {descuento = total_articulos * 0.05;}
     else{descuento = 0;}
-
+    //Ultimos calculos
     impuesto = total_articulos * IMPUESTO;
     total_con_descuento = total_articulos - descuento;
     impuesto = total_con_descuento * IMPUESTO;
     total_pagar = total_con_descuento + impuesto;
-    
+    //Salidas
     printf("================= FACTURA =================\n");
     printf("Cliente: %s\n",nombre);
     printf("Producto                Precio Cant Subtotal\n");
+    //Print con for para cada articulo que se encuentra en el arreglo
     for (i = 0; i < cantidad_articulos; i++)
     {
         printf("%-20s %10.2f %5d %10.2f\n",
         articulos[i], precio[i], cantidad[i], subtotal[i]);
     }
-    //salida final
+    //Salidas finales
     printf("Productos registrados:      %d\n", cantidad_articulos);
     printf("Subtotal:                   %.2f\n", total_articulos);
     printf("Descuento:                  %.2f\n", descuento);
