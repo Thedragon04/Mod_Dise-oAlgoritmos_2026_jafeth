@@ -1,24 +1,28 @@
 #include <stdio.h>
-
+//Productos totales
 #define PRODUCTOS 4
-
+//Funcion para leer enteros con validaxion
 int leerEntero(const char mensaje[], int minimo, int maximo);
-
+//Funcion para mostrar la lista de con sus nombre, precios y cantidades
 void listar(const char productos[PRODUCTOS][20], const double precio[PRODUCTOS], int existencias[PRODUCTOS]);
-
+//Funcion para saber la suma de todo los productos
 double valorInventario(const double precio[PRODUCTOS], int existencias[PRODUCTOS]);
-
+//Funcion para vender producto 
 int vender(int *existencia, int cantidad);
+//Funcion para reponer producto
 void reponer(int *existencia, int cantidad);
 
+//Funcion principal
 int main(void){
-    int opcion;
+    //Arreglos
     char productos[PRODUCTOS][20] = {"Arroz 2kg","Frijoles 1kg","Cafe 1kg", "Aceite 1L"};
     double precio[PRODUCTOS] = {2400,1800,4500,3200};
     int existencias[PRODUCTOS] = {20,15,12,8};
+    //Variables
     double valorInven;
-    int producto,cantidad, pasa;
+    int producto,cantidad, pasa, opcion;
 
+    //Ciclo que termina cuando se digita un 0
     do
     {
         printf("\n1. Listar 2. Vender 3. Reponer 4. Valor 0. Salir\n");
@@ -27,9 +31,11 @@ int main(void){
         switch (opcion)
         {
         case 1:
+            //Muestra funcion de listar
             listar(productos,precio,existencias);
             break;
         case 2:
+            //muestra funcion vender pidiendo dos numeros enteros primero una para que existencias sepa cual tiene que tomar y el otro es solo la cantidad
             producto = leerEntero("Producto (1 a 4):",0,5);
             cantidad = leerEntero("Cantidad (1 a 50)", 0, 51);
             pasa = vender(&existencias[producto-1], cantidad);
@@ -58,6 +64,7 @@ int main(void){
     } while (opcion != 0);
 }
 
+//Funcion para validar los numeros que entren
 int leerEntero(const char mensaje[], int minimo, int maximo){
     int numero;
         do
@@ -71,6 +78,7 @@ int leerEntero(const char mensaje[], int minimo, int maximo){
     
     return numero;
 }
+//Funcion para que se muestre la lista con nombre, precios y cantidades
 void listar(const char productos[PRODUCTOS][20], const double precio[PRODUCTOS], int existencias[PRODUCTOS]){
     int i;
     
@@ -81,6 +89,7 @@ void listar(const char productos[PRODUCTOS][20], const double precio[PRODUCTOS],
 
 }
 
+//Funcion de venta que toma el puntero
 int vender(int *existencia, int cantidad){
     int pasa = 0;
 
@@ -95,9 +104,11 @@ int vender(int *existencia, int cantidad){
     
 }
 
+//Funcion de reponer que toma el puntero
 void reponer(int *existencia, int cantidad){
     *existencia += cantidad;
 }
+//Funcion que suma todo el inventario y lo devuelve ya como un solo numero float
 double valorInventario(const double precio[PRODUCTOS], int existencias[PRODUCTOS]){
     int i;
     double suma;
@@ -106,7 +117,5 @@ double valorInventario(const double precio[PRODUCTOS], int existencias[PRODUCTOS
     {
         suma += precio[i] * existencias[i];
     }
-    
-
     return suma;
 }
