@@ -26,7 +26,7 @@ int main(void){
     do
     {
         printf("\n1. Listar 2. Vender 3. Reponer 4. Valor 0. Salir\n");
-        opcion = leerEntero("Opcion(0 a 4): ",-1,5);
+        opcion = leerEntero("Opcion(0 a 4): ",0,4);
 
         switch (opcion)
         {
@@ -36,8 +36,8 @@ int main(void){
             break;
         case 2:
             //muestra funcion vender pidiendo dos numeros enteros primero una para que existencias sepa cual tiene que tomar y el otro es solo la cantidad
-            producto = leerEntero("Producto (1 a 4):",0,5);
-            cantidad = leerEntero("Cantidad (1 a 50)", 0, 51);
+            producto = leerEntero("Producto (1 a 4):",1,4);
+            cantidad = leerEntero("Cantidad (1 a 50)", 1, 50);
             pasa = vender(&existencias[producto-1], cantidad);
             if (pasa == 1)
             {
@@ -45,8 +45,8 @@ int main(void){
             }
             break;
         case 3:
-            producto = leerEntero("Producto (1 a 4):",0,5);
-            cantidad = leerEntero("Cantidad (1 a 50)", 0, 51);
+            producto = leerEntero("Producto (1 a 4):",1,4);
+            cantidad = leerEntero("Cantidad (1 a 50)", 1, 50);
             reponer(&existencias[producto-1], cantidad);
             printf("Existencias de %s: %d\n", productos[producto-1], existencias[producto-1]);
             break;
