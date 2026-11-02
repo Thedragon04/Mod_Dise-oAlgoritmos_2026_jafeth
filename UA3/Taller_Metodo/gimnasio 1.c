@@ -12,11 +12,11 @@
 #define TAZA_MENOR 0.15
 #define TAZA_MAYOR 0.20
 
-// Prototipos de funciones encargadas de la validación, precios, cálculos y resumen general
+// Protocuotas de funciones encargadas de la validación, precios, cálculos y resumen general
 int leerEntero(const char mensaje[], int minimo, int maximo);
-double precioCuota(int tipo);
-double calcularTotal(int tipo, int edad);
-void resumir(const int cant[], const double tot[],int n, double *total, int *posMayor, int *conDescuento);
+double precioCuota(int cuota);
+double calcularTotal(int cuota, int edad);
+void resumir(const int cant[], const double tot[],int n, double *total, int *subtotalMayor, int *conDescuento);
 
 int main(void){
 
@@ -25,17 +25,17 @@ int main(void){
     int edad[MAX_COMPRAS];
     double totales[MAX_COMPRAS];
 
-    int n, i = 0, tipo;
+    int n, i = 0, cuota;
 
     double totalDia;
-    int posMayor, conDescuento = 0;
+    int subtotalMayor, conDescuento = 0;
 
 // Despliegue del encabezado principal en la consola
 printf("==== Registro de inscripciones ====\n");
-printf("Tipos: 1. Mensual 18000, 2. Trimestral 48000, 3. Anual 160000\n");
+printf("cuotas: 1. Mensual 18000, 2. Trimestral 48000, 3. Anual 160000\n");
 
 // Lectura de la cantidad de registros a procesar con validación de rango permitida
-n = leerEntero("Cantidad de compras", 1, MAX_COMPRAS);
+n = leerEntero("Cantidad de personas maximas a inscribir", 1, MAX_COMPRAS);
 
 // Ciclo para capturar la información correspondiente a cada cliente registrado
 for (i = 0; i < n; i++)
@@ -43,18 +43,18 @@ for (i = 0; i < n; i++)
     printf("Compra %d\n Cliente: ", i + 1);//Numero de compra y pedido de cliente
     scanf("%14s",clientes[i]);
 
-   // Solicitud y validación del tipo de membresía (1, 2 o 3)
-    tipo = leerEntero("Tipo",1,3);
+   // Solicitud y validación del cuota de membresía (1, 2 o 3)
+    cuota = leerEntero("Cuota",1,3);
 
     // Solicitud y validación de la edad del socio dentro del rango permitido (15 a 90)
     edad[i] = leerEntero("Edad",15,90);
     
       // Cálculo del costo final aplicando las reglas de negocio según la edad del socio
-    totales[i] = calcularTotal(tipo, edad[i]);
+    totales[i] = calcularTotal(cuota, edad[i]);
 }
 
 // La función de resumen para procesar totales, mayor compra y cantidad de descuentos
-resumir(edad, totales, n, &totalDia, &posMayor, &conDescuento);
+resumir(edad, totales, n, &totalDia, &subtotalMayor, &conDescuento);
 
 
 printf("\n%-12s%9s%12s\n","Clientes","Edad","Subtotal");
@@ -69,7 +69,7 @@ for (i = 0; i < n; i++)
   // Impresión de los resultados globales obtenidos al finalizar el procesamiento del día
     printf("Total del dia: %12.2f\n", totalDia);
 
-    printf("Compra Mayor: %s (%.2f)\n", clientes[posMayor],totales[posMayor]);
+    printf("Mayor suscripcion: %s (%.2f)\n", clientes[subtotalMayor],totales[subtotalMayor]);
 
     printf("Con descuento:      %d compra(s)\n", conDescuento);
 
@@ -90,9 +90,9 @@ int leerEntero(const char mensaje[], int minimo, int maximo){
     return numero;
 }
 
-// Función que retorna el costo base de la cuota de acuerdo con el tipo de plan seleccionado
-double precioCuota(int tipo){
-    switch (tipo)
+// Función que retorna el costo base de la cuota de acuerdo con el cuota de plan seleccionado
+double precioCuota(int cuota){
+    switch (cuota)
     {
     case 1:
         return PRECIO_MENSUAL; // Retorna el precio del plan mensual.
@@ -105,8 +105,8 @@ double precioCuota(int tipo){
     }
 }
 
-double calcularTotal(int tipo, int edad){
-    double total = precioCuota(tipo);
+double calcularTotal(int cuota, int edad){
+    double total = precioCuota(cuota);
   
     if (edad < DESCUENTO_MENOR) // Aplica el descuento del 15% si el socio es menor de 18 años
     {
@@ -121,23 +121,23 @@ double calcularTotal(int tipo, int edad){
 }
 
 //Definir resumir
-void resumir(const int cant[], const double tot[],int n, double *total, int *posMayor, int *conDescuento){
+void resumir(const int cant[], const double tot[],int n, double *total, int *subtotalMayor, int *conDescuento){
     int i;
 
     *total = 0;
-    *posMayor = 0;
+    *subtotalMayor = 0;
 
     //Recorre el arreglo de compras para evaluar cada elemento registrado
     for  (i = 0; i < n; i++)
     {
         *total += tot[i]; // Acumula el subtotal de cada compra al total general del día
 
-        if (tot[i] > tot[*posMayor]) // Evalúa si el subtotal actual es mayor al registrado previamente para actualizar la posición
+        if (tot[i] > tot[*subtotalMayor]) // Evalúa si el subtotal actual es mayor al registrado previamente para actualizar la posición
         {
-            *posMayor = i;
+            *subtotalMayor = i;
         }
 
-        // Incrementa el contador si la edad del socio califica para recibir algún tipo de descuento
+        // Incrementa el contador si la edad del socio califica para recibir algún cuota de descuento
         if (cant[i] < DESCUENTO_MENOR || cant[i] >= DESCUENTO_MAYOR)
         {
             *conDescuento = *conDescuento + 1;
