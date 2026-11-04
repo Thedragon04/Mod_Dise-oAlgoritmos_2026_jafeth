@@ -56,7 +56,7 @@ int main(void){
         case 1:
             if (n == MAX_PASES)
             {
-                printf("No hay espacio para mas");
+                printf("No hay espacio para mas\n");
                 break;
             }
             //lee ccodigo con entero
@@ -64,6 +64,7 @@ int main(void){
             //revisar si el codigo
             if (buscarCodigo(cod,activo,n,codigo) != -1)
             {
+                printf("El codigo %d ya existe.\n",codigo);
                 break;
             }
             //pide nombre
@@ -121,13 +122,14 @@ int leerentero(const char mensaje[], int minimo, int maximo){
 }
 
 //Busqueda secuencial de un pase
-int bucarCodigo(const int cod[], const int activo[], int n, int codigo){
+int buscarCodigo(const int cod[], const int activo[], int n, int codigo){
     int i;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++){
     //ignora pase dados de baja
     if (cod[i] == codigo && activo[i] == 1){
-        return i;
+            return i;
         }
+    }
     //no esta activo
     return -1;
 }
@@ -152,7 +154,7 @@ void consultar(const int cod[], const char nom[][TAM_NOMBRE], const int viajes[]
     int i, activos = 0;
 
     //encabezado de la tabla
-    printf("%-6s %-12s %6s\n", "Codigo", "Nombre", "Viajes disponibles");
+    printf("%-6s %-12s %18s\n", "Codigo", "Nombre", "Viajes disponibles");
     //recorrer los espacios usados
     for (i = 0; i < n; i++){
         //solo activos
