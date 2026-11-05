@@ -12,7 +12,7 @@
 //Prototipos (una funcion por tarea)
 int leerentero(const char mensaje[], int minimo, int maximo);
 int buscarCodigo(const int cod[], const int activo[], int n, int codigo);
-void incluir(int cod[], char nom[][TAM_NOMBRE], int viajes[], int activo[], int *n,int codigo, const char mombre[], int cantidad);
+void incluir(int cod[], char nom[][TAM_NOMBRE], int viajes[], int activo[], int *n,int codigo, const char nombre[], int cantidad);
 void consultar(const int cod[], const char nom[][TAM_NOMBRE], const int viajes[], const int activo[], int n);
 int usarViaje(int *viajes);
 void darDeBaja(int *activo);
@@ -170,9 +170,9 @@ void consultar(const int cod[], const char nom[][TAM_NOMBRE], const int viajes[]
 //registrar viajes si quedan 
 int usarViaje(int *viajes){
     //revisa si quedan viajes
-    if (*viajes == 0)
+    if (*viajes == 0){
     //no registra
-    return 0;
+    return 0;}
     //cambio en el arreglo
     (*viajes)--;
     return 1; //para confirmar desde main
