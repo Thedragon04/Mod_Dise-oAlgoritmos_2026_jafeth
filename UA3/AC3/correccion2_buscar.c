@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <string.h>//No se estaba usando esta biblioteca en la linea 8 cambie el nombre[i] == buscado, esto compara las direcciones de memoria y no las cadenas
+#include <string.h>/*Que pasaba:Vi que no se estaba utilizando la biblioteca, Porque: No se estaba utilizando ninguna funcion de esta, Cual es la correcion: Utilizarla en la linea 8*/
 #define N 4
 
 int buscar(const char nombres[][15], int n, const char buscado[]) {
     int i;
-    for (i = 0; i < n; i++)//Se quito el = de la comparacion para que no evalue al 4 ya que lee de 0 1 2 3 y estos serian los 4 que lee sino estaria leyendo 5
-        if (strcmp(nombres[i],buscado) == 0)//Condicion cambiada ya que con strcmp es que se comparan cadenas
+    for (i = 0; i < n; i++)/*Que pasaba: El for pasaba por un 4 y este no existe, Porque: Porque la i <= n donde n es cuatro y como solo existen 4 elementos y llegar al 4 no es correcto, Cual es la correcion: Quitar el = de i <= n y con esto solo se valora los elemntos existentes*/
+        if (strcmp(nombres[i],buscado) == 0)/*Que pasaba: Que se estaba comparando cadenas con ==, Porque: Esto lo que hace es comparar los espacios de memoria y no las cadenas, Cual es la correcion: llamar a la funcion de strcmp(a[i],b) == 0 esto pregunta si las cadenas son identicas si lo son da verdadero y devuelve el i actual*/
             return i;
     return -1;
 }

@@ -118,7 +118,7 @@ int leerEntero(const char mensaje[], int minimo, int maximo){
 
 int buscarCodigo(const int cod[], const int activo[], int n, int codigo){
     int i;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++)//Con un for para ir espacio por espacio
     {
         if (cod[i] == codigo && activo[i] == 1)//Ve si el codigo existe y si esta activo
         {
