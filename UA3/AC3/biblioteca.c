@@ -63,7 +63,7 @@ do
         //Lee codigo
         codigo = leerEntero("Codigo",COD_MIN,COD_MAX);
         //Si el codigo ya existe imprime esto
-        if (buscarCodigo(cod, activo, n, codigo) == 1)
+        if (buscarCodigo(cod, activo, n, codigo) != -1)
         {
             printf("El codigo %d ya existe\n",codigo);
             break;
@@ -122,7 +122,7 @@ int buscarCodigo(const int cod[], const int activo[], int n, int codigo){
     {
         if (cod[i] == codigo && activo[i] == 1)//Ve si el codigo existe y si esta activo
         {
-            return 1;//devuelve un 1
+            return i;//devuelve un i
         }
     }
     return -1;

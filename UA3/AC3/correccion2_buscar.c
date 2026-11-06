@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <string.h>//No se esta usando esta biblioteca
+#include <string.h>//No se estaba usando esta biblioteca en la linea 8 cambie el nombre[i] == buscado, esto compara las direcciones de memoria y no las cadenas
 #define N 4
 
 int buscar(const char nombres[][15], int n, const char buscado[]) {
     int i;
-    for (i = 0; i <= n; i++)
+    for (i = 0; i < n; i++)//Se quito el = de la comparacion para que no evalue al 4
         if (strcmp(nombres[i],buscado) == 0)//Condicion cambiada ya que con strcmp es que se comparan cadenas
             return i;
     return -1;

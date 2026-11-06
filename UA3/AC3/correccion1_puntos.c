@@ -7,7 +7,7 @@ int sumarPuntos(int puntos, int compra) {//La funcion tenia que devolver algo en
 
 int main(void) {
     int puntos = 0, compra, i;
-    for (i = 1; i <= 3; i++) {
+    for (i = 1; i <= 3; i++) {// i = 1 es para hacer el prinf directamente con el i actual de cada iteracion hasta que sea mayr a 3
         printf("Compra %d: ", i);
         scanf("%d", &compra);//Faltaba el ampersan
         puntos = sumarPuntos(puntos, compra);//Faltaba hacer que la funcion estuviera enlazada a puntos
