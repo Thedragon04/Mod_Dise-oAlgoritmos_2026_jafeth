@@ -4,7 +4,7 @@
 
 int buscar(const char nombres[][15], int n, const char buscado[]) {
     int i;
-    for (i = 0; i < n; i++)//Se quito el = de la comparacion para que no evalue al 4
+    for (i = 0; i < n; i++)//Se quito el = de la comparacion para que no evalue al 4 ya que lee de 0 1 2 3 y estos serian los 4 que lee sino estaria leyendo 5
         if (strcmp(nombres[i],buscado) == 0)//Condicion cambiada ya que con strcmp es que se comparan cadenas
             return i;
     return -1;
